@@ -80,6 +80,12 @@ resource "aws_security_group" "vprofile_backed_sg" {
     protocol        = "-1"
     security_groups = [aws_security_group.vprofile_prod_sg.id]
   }
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion_host.id]
+  }
 
 }
 
